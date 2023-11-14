@@ -1,0 +1,49 @@
+# Initialize an empty inventory dictionary
+inventory = {}
+
+def add_product(product_name, quantity, price):
+    """Add a new product to the inventory"""
+    if product_name in inventory:
+        print(f"{product_name} already exists in the inventory.")
+    else:
+        inventory[product_name] = {'quantity': quantity, 'price': price}
+        print(f"{product_name} added to the inventory.")
+
+def update_quantity(product_name, new_quantity):
+    """Update the quantity of an existing product"""
+    if product_name in inventory:
+        inventory[product_name]['quantity'] = new_quantity
+        print(f"Quantity of {product_name} updated to {new_quantity}.")
+    else:
+        print(f"{product_name} does not exist in the inventory.")
+
+def display_inventory():
+    """Display the current inventory"""
+    print("Inventory:")
+    for product, details in inventory.items():
+        print(f"{product} - Quantity: {details['quantity']}, Price: ${details['price']}")
+
+def main():
+    while True:
+        print("\n1. Add Product\n2. Update Quantity\n3. Display Inventory\n4. Exit")
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == '1':
+            product_name = input("Enter the product name: ")
+            quantity = int(input("Enter the quantity: "))
+            price = float(input("Enter the price per unit: "))
+            add_product(product_name, quantity, price)
+        elif choice == '2':
+            product_name = input("Enter the product name to update quantity: ")
+            new_quantity = int(input("Enter the new quantity: "))
+            update_quantity(product_name, new_quantity)
+        elif choice == '3':
+            display_inventory()
+        elif choice == '4':
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 4.")
+
+if _name_ == "_main_":
+    main()
